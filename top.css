@@ -1,0 +1,69 @@
+.quizit-navbar {
+    background-color: #6a0dad; /* A deep purple color similar to the image */
+    width: 100%; /* Ensures it spans the full width of the page */
+    padding: 10px 0; /* Add some vertical padding */
+    position: fixed; /* Makes it stick to the top even on scroll */
+    top: 0; /* Aligns it to the very top */
+    left: 0; /* Aligns it to the very left */
+    z-index: 1000; /* Ensures it stays on top of other content */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: add a subtle shadow */
+}
+
+.navbar-content {
+    display: flex; /* Use flexbox for easy alignment of items */
+    justify-content: flex-start; /* Aligns items to the start (left) */
+    align-items: center; /* Vertically centers items */
+    max-width: 1200px; /* Optional: Constrain width if desired, and center it */
+    margin: 0 auto; /* Centers the content within the navbar if max-width is used */
+    padding: 0 20px; /* Add horizontal padding inside the content area */
+}
+
+.quizit-navbar .logo {
+    color: white;
+    font-size: 2em; /* Adjust as needed */
+    font-weight: bold;
+    margin-right: 30px; /* Space between logo and nav items */
+}
+
+.quizit-navbar nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.quizit-navbar nav ul li {
+    margin-right: 20px; /* Space between nav items */
+}
+
+.quizit-navbar nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.quizit-navbar nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Subtle hover effect */
+}
+
+.quizit-navbar .user-profile {
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-left: auto; /* Pushes the profile to the far right */
+}
+
+.quizit-navbar .user-profile .profile-icon {
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    border-radius: 50%; /* Makes it round */
+    margin-right: 10px;
+    border: 2px solid white; /* White border as in the image */
+}
+
+.quizit-navbar .user-profile span {
+    margin-right: 5px;
+}

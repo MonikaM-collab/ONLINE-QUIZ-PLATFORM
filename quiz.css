@@ -1,0 +1,712 @@
+/* General Styling & Background (from logre.php) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%,rgb(177, 156, 197) 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden; /* Prevent body from scrolling */
+}
+
+/* Animated Background from logre.php */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+.floating-shapes {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: float 12s ease-in-out infinite;
+}
+
+.floating-shapes:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; width: 80px; height: 80px; }
+.floating-shapes:nth-child(2) { top: 20%; right: 10%; animation-delay: 2s; width: 120px; height: 120px; }
+.floating-shapes:nth-child(3) { bottom: 10%; left: 20%; animation-delay: 4s; width: 60px; height: 60px; }
+.floating-shapes:nth-child(4) { bottom: 20%; right: 20%; animation-delay: 6s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(180deg); }
+}
+
+/* Header (Consistent with logre.php) */
+.header {
+    position: relative; /* Changed from fixed */
+    flex-shrink: 0; /* Prevent header from shrinking */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.header:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+.logo::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.logo:hover::after {
+    transform: scaleX(1);
+}
+
+.nav { display: flex; gap: 2rem; }
+.nav-item {
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    transition: left 0.5s ease;
+}
+.nav-item:hover::before { left: 0; }
+.nav-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+.nav-item.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Profile Icon (new style) */
+.profile-icon-link {
+    display: block; /* Ensure the link behaves as a block */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden; /* Ensure avatar doesn't overflow */
+    background-color: rgba(255,255,255,0.2); /* Placeholder background */
+}
+
+.profile-icon-link:hover {
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.profile-icon-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block; /* Remove extra space below image */
+}
+
+/* Main Content Area - NEW for scrolling (from logre.php) */
+.main-content-area {
+    flex-grow: 1; /* Take remaining vertical space */
+    overflow-y: auto; /* Enable vertical scrolling ONLY for this container */
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align content to the top */
+}
+
+/* Custom Scrollbar (from logre.php) */
+.main-content-area::-webkit-scrollbar {
+    width: 8px;
+}
+.main-content-area::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.main-content-area::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+.main-content-area::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Extraordinary Design for the Container (from logre.php, adapted for quiz content) */
+.container {
+    background: rgba(10, 5, 25, 0.25); /* Darker, more contrasted background */
+    backdrop-filter: blur(15px); /* Increased blur for better glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Subtler border */
+    border-radius: 25px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    padding: 40px 50px;
+    width: 100%;
+    max-width: 650px; /* Adjusted to fit quiz content better */
+    box-sizing: border-box;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #fff; /* Ensure text inside is white for contrast */
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at top left, rgba(255,107,107,0.5), transparent 40%),
+                radial-gradient(circle at bottom right, rgba(78,205,196,0.5), transparent 40%);
+    z-index: -1;
+    border-radius: 25px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    animation: pulse-glow 8s infinite alternate;
+}
+
+@keyframes pulse-glow {
+    from { opacity: 0; }
+    to { opacity: 0.3; }
+}
+
+.container:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+}
+
+/* Quiz Specific Styles (adapted for new design) */
+h1 {
+    margin-bottom: 30px;
+    color: #fff; /* Changed to white for contrast on dark container */
+    font-size: 2.5em;
+    font-weight: 700;
+    text-shadow: 2px 3px 7px rgba(0, 0, 0, 0.3);
+}
+h1 .brain-icon {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 0.9em;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+    transform: rotate(-10deg);
+    transition: transform 0.3s ease-out;
+}
+h1:hover .brain-icon {
+    transform: rotate(10deg) scale(1.1);
+}
+
+h2 {
+    margin-top: 40px;
+    margin-bottom: 35px;
+    color: #4ecdc4; /* Changed for better contrast */
+    font-size: 2.3em;
+    text-align: center;
+    font-weight: 700;
+    text-shadow: 1px 1px 4px rgba(78, 205, 196, 0.4);
+}
+h2 .username-display {
+    font-size: 0.6em;
+    color: #fff; /* Changed to white */
+    font-weight: 500;
+    display: block;
+    margin-top: 10px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    text-align: left; /* Align labels and inputs to the left */
+}
+
+label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 500;
+    color: #e0e0e0; /* Light grey for labels */
+    font-size: 1.05em;
+    transition: color 0.3s ease;
+}
+input[type="text"]:focus + label,
+input[type="number"]:focus + label {
+    color: #4ecdc4; /* Highlight label on input focus */
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%; /* Changed from calc(100% - 28px) */
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Lighter border for inputs */
+    border-radius: 12px;
+    font-size: 1.1em;
+    color: #333; /* Dark text for input values */
+    background-color: #fff; /* White background for inputs */
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #4ecdc4;
+    box-shadow: 0 0 0 5px rgba(78, 205, 196, 0.3);
+    outline: none;
+    background-color: #fff;
+}
+
+.difficulty-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between buttons */
+    margin-bottom: 30px; /* Space above Generate Quiz button */
+}
+
+.difficulty-buttons button {
+    flex: 1; /* Distribute space equally */
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.15); /* Slightly transparent background */
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.difficulty-buttons button:hover {
+    background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
+    border-color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.difficulty-buttons button:active {
+    transform: translateY(0);
+    box-shadow: inset 0 3px 7px rgba(0,0,0,0.25);
+}
+
+/* NEW: Style for active difficulty button */
+.difficulty-buttons button.active-difficulty {
+    background: linear-gradient(45deg, #4ecdc4, #ff6b6b); /* Highlight with gradient */
+    border-color: #fff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+button {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4); /* Retained original button gradient */
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.25em;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transform: scale(1);
+}
+button:hover {
+    background: linear-gradient(45deg, #4ecdc4, #ff6b6b); /* Reverse gradient on hover */
+    color: #fff;
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+button:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: inset 0 3px 7px rgba(0,0,0,0.25);
+}
+
+.error {
+    color: #ffdddd;
+    background-color: rgba(255, 99, 71, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid #ff6b6b;
+    white-space: pre-wrap;
+    animation: fadeIn 0.4s ease-out;
+    box-shadow: 0 2px 10px rgba(255, 99, 71, 0.25);
+}
+
+.question-block {
+    margin-bottom: 35px;
+    padding: 60px 115px 30px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 25px; /* More rounded corners */
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    backdrop-filter: blur(8px); /* Blur for glass effect */
+    position: relative;
+    display: none;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+    transition: all 0.6s ease-out;
+    text-align: left; /* Align question text to left */
+}
+.question-block.active {
+    display: block;
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transform: translateY(-8px);
+    animation: slideIn 0.7s ease-out forwards;
+    opacity: 0;
+}
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.question-block strong {
+    display: block;
+    margin-bottom: 25px;
+    font-size: 1.25em;
+    color: #fff; /* White question text */
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: -0.2px;
+}
+.question-block ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 25px;
+}
+.question-block li {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.08); /* Lighter semi-transparent for options */
+    padding: 14px 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+    cursor: pointer;
+    font-weight: 400;
+    color: #e0e0e0; /* Light text for options */
+}
+.question-block li:hover:not(.question-block.active input[type="radio"]:disabled + label) {
+    background-color: rgba(78, 205, 196, 0.2); /* Teal tint on hover */
+    border-color: #4ecdc4;
+    transform: translateX(10px);
+    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.25);
+}
+
+/* Style for selected list item */
+.question-block li.selected {
+    background-color: rgba(78, 205, 196, 0.3); /* A more pronounced teal for selected */
+    border-color: #4ecdc4;
+    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
+}
+
+.question-block input[type="radio"] {
+    margin-right: 15px;
+    flex-shrink: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 3px solid #4ecdc4; /* Teal border for radio */
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+.question-block input[type="radio"]:checked {
+    background-color: #4ecdc4;
+    border-color: #4ecdc4;
+}
+.question-block input[type="radio"]:checked::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.question-block input[type="radio"]:disabled + label {
+    color: rgba(255, 255, 255, 0.6);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+.question-block input[type="radio"]:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.feedback {
+    margin-top: 25px;
+    padding: 18px 22px;
+    border-radius: 10px;
+    font-weight: 500;
+    display: none;
+    animation: fadeIn 0.4s ease-out;
+    line-height: 1.5;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    color: #fff; /* White text for feedback */
+}
+/* Styles for the "Wrong Answer" feedback line */
+.feedback .wrong-chosen-text {
+    color: #ffdddd; /* Lighter red */
+    background-color: rgba(255, 99, 71, 0.2);
+    border: 1px solid rgba(255, 107, 107, 0.4);
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: block;
+}
+/* Styles for the "Correct Answer" feedback line */
+.feedback .correct-answer-text {
+    color: #ddffdd; /* Lighter green */
+    background-color: rgba(92, 184, 92, 0.2);
+    border: 1px solid rgba(92, 184, 92, 0.4);
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: block;
+}
+
+/* Styling for the labels within feedback (e.g., "Wrong Answer:", "You chose") */
+.feedback-label {
+    font-weight: 700;
+    margin-right: 8px;
+    text-transform: uppercase;
+}
+.feedback .wrong-chosen-text .feedback-label {
+    color: #ff6b6b; /* Red */
+}
+.feedback .correct-answer-text .feedback-label {
+    color: #5cb85c; /* Green */
+}
+.chosen-answer-value {
+    font-style: italic;
+    font-weight: 500;
+    color: #fff; /* White */
+}
+.correct-answer-value {
+     font-weight: 600;
+     color: #4ecdc4; /* Teal */
+}
+
+.correct-option-label {
+    color: #4ecdc4 !important; /* Teal */
+    font-weight: 600 !important;
+}
+
+.validation-message, .status-message {
+    color: #ffdddd;
+    background-color: rgba(255, 99, 71, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid #ff6b6b;
+    animation: fadeIn 0.4s ease-out;
+    box-shadow: 0 2px 10px rgba(255, 99, 71, 0.25);
+}
+.status-message.success {
+    color: #ddffdd;
+    background-color: rgba(92, 184, 92, 0.2);
+    border-color: #5cb85c;
+    box-shadow: 0 2px 10px rgba(92, 184, 92, 0.25);
+}
+.status-message.info {
+    color: #d9edf7; /* Light blue */
+    background-color: rgba(91, 192, 222, 0.2);
+    border-color: #5bc0de;
+    box-shadow: 0 2px 10px rgba(91, 192, 222, 0.25);
+}
+
+.score-display {
+    font-size: 1.9em;
+    font-weight: 700;
+    color: #fff; /* White score text */
+    text-align: center;
+    margin-top: 50px;
+    padding: 35px;
+    border: 2px solid rgba(255, 255, 255, 0.4); /* Lighter border */
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    animation: bounceIn 0.9s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+    display: none;
+}
+@keyframes bounceIn {
+    0% { transform: scale(0.7); opacity: 0; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+/* Timer Styles */
+.question-timer {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #fff;
+    background-color: #667eea; /* Purple from logre.php gradient */
+    padding: 8px 16px;
+    border-radius: 30px;
+    border: 2px solid rgba(102, 126, 234, 0.6);
+    min-width: 75px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+.question-timer.time-low {
+    background-color: #ff6b6b; /* Red from logre.php gradient */
+    color: #fff;
+    border-color: rgba(255, 107, 107, 0.8);
+    animation: pulseColor 1s infinite alternate;
+}
+@keyframes pulseColor {
+    from { transform: scale(1); box-shadow: 0 0 10px rgba(255, 107, 107, 0.4); }
+    to { transform: scale(1.05); box-shadow: 0 0 15px rgba(255, 107, 107, 0.6); }
+}
+
+/* Fade in animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Profile icon styles */
+.profile-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 9999; /* Make sure it stays above other elements */
+}
+
+.profile-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd; /* Optional: border for better look */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header { flex-direction: column; gap: 1rem; padding: 1rem; }
+    .nav { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .logo { font-size: 2rem; }
+    .container { padding: 30px; margin: 15px; }
+    h1 { font-size: 2.2em; }
+    h2 { font-size: 1.8em; margin-top: 30px; margin-bottom: 25px; }
+    button { font-size: 1.1em; padding: 15px; margin-top: 25px; }
+    .difficulty-buttons { flex-direction: column; gap: 10px; } /* Stack buttons vertically on small screens */
+    .difficulty-buttons button { padding: 12px; font-size: 1em; }
+    .question-block {
+        padding: 50px 95px 25px 25px;
+        margin-bottom: 30px;
+    }
+    .question-block strong { font-size: 1.1em; }
+    .question-block li {
+        padding: 12px 18px;
+        margin-bottom: 14px;
+    }
+    .question-block input[type="radio"] {
+        width: 20px;
+        height: 20px;
+    }
+    .question-block input[type="radio"]:checked::before {
+        width: 9px;
+        height: 9px;
+    }
+    .question-timer {
+        font-size: 1em;
+        padding: 7px 12px;
+        top: 20px;
+        right: 20px;
+        min-width: 60px;
+    }
+    .score-display {
+        font-size: 1.4em;
+        padding: 25px;
+        margin-top: 40px;
+    }
+    .feedback {
+        padding: 15px 18px;
+    }
+    .feedback .wrong-chosen-text,
+    .feedback .correct-answer-text {
+        padding: 8px 12px;
+    }
+}

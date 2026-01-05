@@ -1,0 +1,274 @@
+/* Leaderboard Specific Styles */
+/* Note: body and main-content styles from leader.php are adapted or omitted
+   as log.php has its own main layout. */
+
+.page-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.8em;
+    color: #4F6F52; /* Changed to a muted forest green */
+    margin-bottom: 0px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+.page-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    color: #666; /* Kept neutral for readability */
+    margin-top: 5px;
+    margin-bottom: 50px;
+    font-weight: 400;
+}
+
+.leaderboard-table-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-top: 40px;
+    animation: fadeInScale 0.8s ease-out;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    table-layout: fixed;
+}
+
+.leaderboard-table thead {
+    background-color: #739F8F; /* Changed to a dusty, muted green */
+    color: #ffffff;
+}
+
+.leaderboard-table th {
+    padding: 18px 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.05em;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.leaderboard-table th:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard-table tbody tr {
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.leaderboard-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.leaderboard-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Kept neutral light grey */
+}
+
+.leaderboard-table tbody tr:hover {
+    background-color: #F0F5F2; /* Changed to a very light, dull green */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.leaderboard-table td {
+    padding: 15px;
+    text-align: left;
+    font-size: 0.95em;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Specific styling for Rank column */
+.leaderboard-table td:first-child {
+    font-weight: 700;
+    color: #4F6F52; /* Changed to a muted forest green */
+    width: 10%;
+    min-width: 60px;
+    max-width: 80px;
+}
+
+/* Specific styling for Score column */
+.leaderboard-table td:last-child {
+    font-weight: 700;
+    color: #28a745; /* This was already green and quite good for score */
+    width: 15%;
+    min-width: 80px;
+    max-width: 100px;
+}
+
+/* Top 3 Player Styles */
+.first-place {
+    background: linear-gradient(to right, #ffe082, #ffd54f); /* Gold gradient - kept as is */
+    color: #4F6F52 !important; /* Changed to new muted green */
+    font-weight: 700;
+    animation: pulse 1.5s infinite alternate;
+}
+.first-place td {
+    color: #4F6F52 !important; /* Changed to new muted green */
+}
+
+.second-place {
+    background: linear-gradient(to right, #e0e0e0, #bdbdbd); /* Silver gradient - kept as is */
+    color: #555 !important;
+    font-weight: 600;
+}
+.second-place td {
+    color: #555 !important;
+}
+
+.third-place {
+    background: linear-gradient(to right, #d8bcab, #c89c7d); /* Bronze gradient - kept as is */
+    color: #666 !important;
+    font-weight: 600;
+}
+.third-place td {
+    color: #666 !important;
+}
+
+/* Medal Icons */
+.gold-medal { color: #d4af37; margin-right: 5px; animation: bounceIn 0.8s ease-out; } /* Kept as is */
+.silver-medal { color: #a8a8a8; margin-right: 5px; animation: bounceIn 0.8s ease-out; } /* Kept as is */
+.bronze-medal { color: #cd7f32; margin-right: 5px; animation: bounceIn 0.8s ease-out; } /* Kept as is */
+
+/* Score Icon */
+.score-cell {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.score-icon {
+    margin-left: 5px;
+    color: #ffc107; /* Kept as is */
+    font-size: 0.9em;
+}
+
+/* Loading/Error/No Data Messages */
+.loading-message, .error-message, .no-data-message {
+    padding: 30px 20px;
+    font-size: 1.1em;
+    color: #777;
+    text-align: center;
+    background-color: #ffffff;
+    border-top: 1px solid #eee;
+    border-radius: 0 0 12px 12px;
+}
+
+.loading-message i, .error-message i, .no-data-message i {
+    margin-right: 10px;
+    font-size: 1.3em;
+}
+
+.error-message {
+    color: #dc3545; /* Kept red for error visibility */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .leaderboard-table th,
+    .leaderboard-table td {
+        padding: 12px 10px;
+        font-size: 0.9em;
+    }
+    .page-title {
+        font-size: 3em;
+    }
+    .page-subtitle {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 600px) {
+    .leaderboard-table thead {
+        display: none;
+    }
+
+    .leaderboard-table,
+    .leaderboard-table tbody,
+    .leaderboard-table tr,
+    .leaderboard-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .leaderboard-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .leaderboard-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+        border-bottom: 1px dashed #eee;
+    }
+
+    .leaderboard-table td:last-child {
+        border-bottom: none;
+    }
+
+    .leaderboard-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 600;
+        color: #4F6F52; /* Changed to new muted green */
+    }
+    /* Adjusted data-label content */
+    .leaderboard-table td:nth-of-type(1):before { content: "Rank:"; }
+    .leaderboard-table td:nth-of-type(2):before { content: "Username:"; }
+    .leaderboard-table td:nth-of-type(3):before { content: "Score:"; }
+
+
+    .score-cell {
+        justify-content: flex-end;
+    }
+}
+
+/* Animations */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); }
+    50% { transform: scale(1.01); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); }
+    100% { transform: scale(1); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); }
+}
+
+@keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        transition-timing-function: cubic-bezier(0.215, .61, .355, 1);
+    }
+    0% { opacity: 0; transform: scale3d(.3, .3, .3); }
+    20% { transform: scale3d(1.1, 1.1, 1.1); }
+    40% { transform: scale3d(.9, .9, .9); }
+    60% { opacity: 1; transform: scale3d(1.03, 1.03, 1.03); }
+    80% { transform: scale3d(.97, .97, .97); }
+    100% { opacity: 1; transform: scale3d(1, 1, 1); }
+}
